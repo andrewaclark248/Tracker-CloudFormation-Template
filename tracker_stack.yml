@@ -76,6 +76,26 @@ Resources:
             VpcId: !Ref EC2VPC
         DeletionPolicy: Delete
 
+    EC2NetworkAclEntry:
+        Type: "AWS::EC2::NetworkAclEntry"
+        Properties:
+            CidrBlock: "0.0.0.0/0"
+            Egress: true
+            NetworkAclId: "acl-0604398da4a39cfa0"
+            Protocol: -1
+            RuleAction: "allow"
+            RuleNumber: 100
+
+    EC2NetworkAclEntry2:
+        Type: "AWS::EC2::NetworkAclEntry"
+        Properties:
+            CidrBlock: "0.0.0.0/0"
+            Egress: false
+            NetworkAclId: "acl-0604398da4a39cfa0"
+            Protocol: -1
+            RuleAction: "allow"
+            RuleNumber: 100
+
 
     EC2RouteTable:
         Type: "AWS::EC2::RouteTable"
@@ -678,6 +698,7 @@ Resources:
             OptionGroupName: "default:mysql-8-0"
             MonitoringRoleArn: !Sub "arn:aws:iam::${AWS::AccountId}:role/rds-monitoring-role"
             CACertificateIdentifier: "rds-ca-2019"
+
 
 
 
